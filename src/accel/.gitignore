@@ -84,3 +84,7 @@
 !*.elf
 !*.bmm
 !*.xmp
+
+.autopilot
+.vivado_hls_log_all.xml
+syn/
