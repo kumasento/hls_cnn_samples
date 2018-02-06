@@ -4,9 +4,9 @@
 ## Copyright (C) 1986-2016 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project hls_cnn
-set_top ConvLayerTest
+set_top ConvLayerTileSynTest
 add_files hls_cnn/layers.cpp
-add_files -tb hls_cnn/test_conv_layer_weights_buffer.cpp
+add_files -tb hls_cnn/test_conv_layer_tile.cpp
 open_solution "zynq"
 set_part {xc7z020clg484-1} -tool vivado
 create_clock -period 200MHz -name default
