@@ -13,6 +13,7 @@ template<typename T, int KernelSize = KERNEL_SIZE, int TileSize = TILE_SIZE,
     int MaxNumChnl = MAX_NUM_CHNL>
 class ConvLayer {
  public:
+
   void ReadWeightsBuffer(hls::stream<T> &weights,
                          T buf[KernelSize * KernelSize]) {
     for (int i = 0; i < KernelSize * KernelSize; i++)
@@ -25,6 +26,12 @@ class ConvLayer {
       buf[i] = input.read();
   }
 
+  /** Performs the innermost computation.
+   *
+   * Given two windows of the input feature map and the coefficient matrix,
+   * it does element-wise multiplication at first, and then performs a
+   * reduce-add.
+   */
   void Convolve(T input[KernelSize * KernelSize],
                 T weights[KernelSize * KernelSize], T *output) {
     int num_elems = KernelSize * KernelSize;
@@ -53,11 +60,9 @@ class ConvLayer {
     this->ReadInputBuffer(input, num_chnl, input_buf);
 
     for (int f = 0; f < num_fltr; f++) {
-#pragma HLS PIPELINE
       T curr_bias = bias.read();
 
       for (int c = 0; c < num_chnl; c++) {
-#pragma HLS PIPELINE
         this->ReadWeightsBuffer(weights, weights_buf);
 
         for (int out_h = 0; out_h < output_height; out_h++) {
