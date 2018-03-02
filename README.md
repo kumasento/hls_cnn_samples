@@ -24,3 +24,16 @@ mkdir -p build && cd build && cmake .. && make
 # run LeNet
 ./lenet
 ```
+
+### Run Vivado HLS
+
+We currently provide a TCL script to build Vivado HLS based 
+hardware design.
+
+Design files are in `src/accel`.
+
+```script
+# Top function is selected as conv_layer_tile_accel_inst
+
+vivado_hls tcl/vivado_hls.tcl
+```

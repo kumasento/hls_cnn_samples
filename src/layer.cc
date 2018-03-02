@@ -15,7 +15,6 @@ void conv_layer(SCALAR_T *input, SCALAR_T *weights, SCALAR_T *bias,
   for (int f = 0; f < output_depth; f++) {
     for (int out_h = 0; out_h < output_height; out_h++) {
       for (int out_w = 0; out_w < output_width; out_w++) {
-
         SCALAR_T sum = bias[f];
 
         for (int c = 0; c < input_depth; c++) {

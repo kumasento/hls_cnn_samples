@@ -1,1 +1,8 @@
 build/
+
+# editor
+.vscode
+
+# Vivado HLS
+deepug/
+*.log
