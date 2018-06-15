@@ -1,6 +1,6 @@
-# Deepug
+# HLS CNN Samples
 
-Automatic generate debugging instrumentations for CNN acclerator hardware design.
+Some sample codes for implementing CNN in Vivado HLS.
 
 ## Usage
 
